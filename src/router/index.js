@@ -5,13 +5,13 @@ import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 // import UserView from "@/views/UserView";
 
 // which is lazy-loaded when the route is visited.
-const Home = () => import('../views/HomeView')
-const HomeNews =() => import('../components/HomeNews')
-const HomeMessages =() => import('../components/HomeMessages')
+const Home = () => import('@/views/home/HomeView')
+const HomeNews =() => import('@/components/home/HomeNews')
+const HomeMessages =() => import('@/components/home/HomeMessages')
 
-const About = () => import('../views/AboutView')
-const Test = () => import('../views/TestView')
-const User = () => import('../views/UserView')
+const About = () => import('@/views/about/AboutView')
+const Test = () => import('@/views/test/TestView')
+const User = () => import('@/views/user/UserView')
 
 const routes = [
   {

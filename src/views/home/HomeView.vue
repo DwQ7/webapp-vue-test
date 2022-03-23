@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/images/logo.png">
+    <img alt="Vue logo" src="@/assets/images/logo.png">
     <h2>Welcome to Your Vue.js App</h2>
     <router-link to="/home/news">News</router-link> |
     <router-link to="/home/messages">Messages</router-link>
@@ -10,9 +10,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'HomeView',
   components: {

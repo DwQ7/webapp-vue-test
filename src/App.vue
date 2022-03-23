@@ -1,19 +1,19 @@
 <template>
-
   <nav>
     <router-link to="/home" >Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/test">Test</router-link> |
+    <router-link to="/test">About</router-link> |
+    <router-link to="/about">Test</router-link> |
     <router-link :to="{path:'/user/'+userId,query:{name:userId,age:'19',height:188,weight:'70kg'}}">User</router-link>
   </nav>
-  <keep-alive exclude="">
     <router-view/>
-  </keep-alive>
-
-<!--  确定路由对应的组件渲染的位置-->
+    <compute/>
+    <main-tab-bar/>
 </template>
 
 <script>
+
+import MainTabBar from "@/components/mainTabBar/MainTabBar";
+import Compute from "@/components/Compute";
 
 export default {
   name:'App',
@@ -21,6 +21,10 @@ export default {
     return{
       userId:'lisa'
     }
+  },
+  components:{
+    MainTabBar,
+    Compute
   }
 }
 </script>
