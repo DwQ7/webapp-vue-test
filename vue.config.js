@@ -32,6 +32,7 @@ module.exports = defineConfig({
   //       .set('@components', resolve('src/components'))
   //       .set('@views', resolve('src/views'))
   //       .set('@router', resolve('src/router'));
+  //       .set('@store',resolve('/src/store)
   //   // 压缩图片
   //   // 需要 npm i -D image-webpack-loader
   //   config.module

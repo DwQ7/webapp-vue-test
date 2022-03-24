@@ -7,6 +7,8 @@
   </nav>
     <router-view/>
     <compute/>
+  <h2>{{this.$store.state.username}}</h2>
+  <h2>{{this.$store.state.counter}}</h2>
     <main-tab-bar/>
 </template>
 
