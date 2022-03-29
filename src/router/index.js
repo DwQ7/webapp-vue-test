@@ -24,16 +24,18 @@ const routes = [
     component: Home,
     tittle:'首页',
     children:[
-      // {
-      //   path: '',
-      //   redirect:'news'
-      // },
+      {
+        path: '/',
+        component: Home,
+      },
       {
         path:'news',
+        name:'HomeNews',
         component:HomeNews
       },
       {
         path:'messages',
+        name:'HomeMessages',
         component:HomeMessages
       }
     ]
@@ -65,13 +67,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to,from,next) =>{
-  console.log(to);
   document.title = to.name
   next();
 })
 
 router.afterEach((to, from) => {
-  console.log('----');
 })
 
 export default router
