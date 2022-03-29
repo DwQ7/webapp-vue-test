@@ -1,22 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/home" >Home</router-link> |
-    <router-link to="/test">About</router-link> |
-    <router-link to="/about">Test</router-link> |
-    <router-link :to="{path:'/user/'+userId,query:{name:userId,age:'19',height:188,weight:'70kg'}}">User</router-link>
-  </nav>
-    <router-view/>
-    <compute/>
-  <h2>{{this.$store.state.username}}</h2>
-  <h2>{{this.$store.state.counter}}</h2>
-    <main-tab-bar/>
+  <nav-bar class="home_nav">
+    <template #center>桃堡</template>
+  </nav-bar>
+  <router-view/>
+  <main-tab-bar/>
+<!--    <router-link to="/home" >Home</router-link> |-->
+<!--    <router-link to="/test">About</router-link> |-->
+<!--    <router-link to="/about">Test</router-link> |-->
+<!--    <router-link :to="{path:'/user/'+userId,query:{name:userId,age:'19',height:188,weight:'70kg'}}">User</router-link>-->
+<!--    <router-view/>-->
+<!--    <compute/>-->
+<!--  <h2>{{this.$store.state.username}}</h2>-->
+<!--  <h2>{{this.$store.state.counter}}</h2>-->
+
 </template>
 
 <script>
 
-import MainTabBar from "@/components/mainTabBar/MainTabBar";
+import MainTabBar from "@/components/content/mainTabBar/MainTabBar";
 import Compute from "@/components/Compute";
-
+import NavBar from "@/components/common/navbar/NavBar";
+import HomeView from "@/views/home/HomeView";
+import ManyButton from "@/components/common/button/ManyButton";
 export default {
   name:'App',
   data(){
@@ -25,8 +30,11 @@ export default {
     }
   },
   components:{
+    HomeView,
     MainTabBar,
-    Compute
+    NavBar,
+    Compute,
+    ManyButton,
   }
 }
 </script>
@@ -41,7 +49,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
+.home_nav{
+  background: #42b983;
+}
 nav {
   padding: 30px;
 }
