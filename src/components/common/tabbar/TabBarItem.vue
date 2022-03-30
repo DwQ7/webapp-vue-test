@@ -18,7 +18,7 @@ export default {
   },
   data(){
     return{
-      color:'#42b983'
+      color:'#FF7A9C'
     }
   },
   computed:{

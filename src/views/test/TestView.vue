@@ -1,18 +1,28 @@
 <template>
-  <div><h2>This is test</h2></div>
-  <test></test>
+  <div class="demo-progress">
+    <el-progress :percentage="50" />
+<!--    <el-progress :percentage="100" :format="format" />-->
+    <el-progress :percentage="100" status="success" />
+    <el-progress :percentage="100" status="warning" />
+    <el-progress :percentage="50" status="exception" />
+  </div>
 </template>
 
 <script>
-import test from '@/components/Test.vue'
+
+// const format = (percentage) => (percentage === 100 ? 'Full' : `${percentage}%`)
 export default {
   name: "TestView",
-  components:{
-    test
+  computed:{
+
   }
+
 }
 </script>
 
 <style scoped>
-
+.demo-progress .el-progress--line {
+  margin-bottom: 15px;
+  width: 350px;
+}
 </style>

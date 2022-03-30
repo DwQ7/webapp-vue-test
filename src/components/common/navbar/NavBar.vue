@@ -18,14 +18,19 @@ export default {
   grid-template-columns: 60px 1fr 60px;
   line-height: 44px;
   height: 5vh;
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 .left,.right{
-  background-color: #2c3e50;
+  /*background-color: ;*/
 }
 .center{
   font-size: 22px;
   font-weight: bold;
-  /*box-shadow: 0 0 4px 1px #999;*/
+  text-align: center;
   box-shadow: 0 1px 1px rgba(100,100,100,.2);
 }
 </style>
