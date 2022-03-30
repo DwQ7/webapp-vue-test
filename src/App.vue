@@ -1,10 +1,9 @@
 <template>
-  <nav-bar class="home_nav">
-    <template #center>桃堡</template>
-  </nav-bar>
   <router-view/>
+<!--  <div style="height: 5rem;"></div>-->
+
   <main-tab-bar/>
-<!--    <router-link to="/home" >Home</router-link> |-->
+<!--    <router-link to="/childComps" >Home</router-link> |-->
 <!--    <router-link to="/test">About</router-link> |-->
 <!--    <router-link to="/about">Test</router-link> |-->
 <!--    <router-link :to="{path:'/user/'+userId,query:{name:userId,age:'19',height:188,weight:'70kg'}}">User</router-link>-->
@@ -12,7 +11,6 @@
 <!--    <compute/>-->
 <!--  <h2>{{this.$store.state.username}}</h2>-->
 <!--  <h2>{{this.$store.state.counter}}</h2>-->
-
 </template>
 
 <script>
@@ -34,7 +32,7 @@ export default {
     MainTabBar,
     NavBar,
     Compute,
-    ManyButton,
+    ManyButton
   }
 }
 </script>
@@ -42,26 +40,5 @@ export default {
 <style>
   /*style中引用css固定写法*/
   @import "./assets/css/base.css";
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-.home_nav{
-  background: #42b983;
-}
-nav {
-  padding: 30px;
-}
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
