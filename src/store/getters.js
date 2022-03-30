@@ -8,4 +8,7 @@ export default {
     more20stuLength(state, getters) {
         return getters.more20stu.length
     },
+    getCurrentIndex(state){
+        return state.currentIndex
+    }
 }
