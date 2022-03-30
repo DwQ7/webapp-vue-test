@@ -3,6 +3,7 @@
     /*设置变量*/
     --color-text: #666;
     --large-size: 14px;
+    --body-color:#FF7A9C;
 }
 body{
     padding: 0;
