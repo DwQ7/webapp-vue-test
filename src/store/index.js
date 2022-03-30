@@ -19,7 +19,8 @@ const state =  {
         name: 'kobe',
         age: 40,
         height: 1.98
-    }
+    },
+    currentIndex:0
 }
 const store = createStore({
     state,
@@ -31,4 +32,5 @@ const store = createStore({
     }
 })
 Vue.config.devtools = true
+
 export default store

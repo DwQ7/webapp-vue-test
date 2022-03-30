@@ -3,7 +3,9 @@ const path = require('path');//引入path模块
 const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
-
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
 // const path =  require('path');
 // const CompressionWebpackPlugin = require("compression-webpack-plugin"); // 开启gzip压缩， 按需引用
 // const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i; // 开启gzip压缩， 按需写入
@@ -25,6 +27,15 @@ module.exports = defineConfig({
         resolvers: [ElementPlusResolver()],
       })
     ]
+  },
+  chainWebpack: config => {
+    config.resolve.alias
+        //设置“src”目录别名为“@”
+        .set("@", resolve("src"))
+        .set("@views", resolve("src/views"))
+        .set("@assets",resolve("src/assets"))
+        .set("@common",resolve("src/common"))
+        .set("@components",resolve("src/components"))
   }
   // publicPath: process.env.NODE_ENV === 'production' ? '/site/vue-demo/' : '/',  // 公共路径
   // indexPath: 'index.html' , // 相对于打包路径index.html的路径

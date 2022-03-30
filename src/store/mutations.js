@@ -8,5 +8,8 @@ export default {
     },
     updateInfo(state) {
         state.info.name = 'qx'
+    },
+    updateIndex(state,index){
+        state.currentIndex = index;
     }
 }

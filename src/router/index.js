@@ -6,8 +6,8 @@ import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 
 // which is lazy-loaded when the route is visited.
 const Home = () => import('@/views/home/HomeView')
-const HomeNews =() => import('@/components/home/HomeNews')
-const HomeMessages =() => import('@/components/home/HomeMessages')
+const HomeNews =() => import('@/views/home/childComps/HomeNews')
+const HomeMessages =() => import('@/views/home/childComps/HomeMessages')
 
 const About = () => import('@/views/about/AboutView')
 const Test = () => import('@/views/test/TestView')
