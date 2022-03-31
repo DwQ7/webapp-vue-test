@@ -16,18 +16,18 @@ module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
   //配置按需引入Element-plus
-  configureWebpack: {
-    plugins: [
-      require('unplugin-vue-components/webpack')({ /* options */
-      }),
-      AutoImport({
-        resolvers: [ElementPlusResolver()],
-      }),
-      Components({
-        resolvers: [ElementPlusResolver()],
-      })
-    ]
-  },
+  // configureWebpack: {
+  //   plugins: [
+  //     require('unplugin-vue-components/webpack')({ /* options */
+  //     }),
+  //     AutoImport({
+  //       resolvers: [ElementPlusResolver({ importStyle: false })],
+  //     }),
+  //     Components({
+  //       resolvers: [ElementPlusResolver({ importStyle: false })],
+  //     })
+  //   ]
+  // },
   chainWebpack: config => {
     config.resolve.alias
         //设置“src”目录别名为“@”
@@ -36,6 +36,24 @@ module.exports = defineConfig({
         .set("@assets",resolve("src/assets"))
         .set("@common",resolve("src/common"))
         .set("@components",resolve("src/components"))
+    config.plugin('AutoImport').use(
+        AutoImport({
+          imports: ['vue'],
+          resolvers: [
+            ElementPlusResolver({
+              importStyle: 'css',
+              exclude: new RegExp(/^(?!.*loading-directive).*$/)
+            })
+          ],
+          dts: 'auto-imports.d.ts'
+        })
+    )
+    config.plugin('Components').use(
+        Components({
+          resolvers: [ElementPlusResolver({ importStyle: 'css' })],
+          dts: 'components.d.ts'
+        })
+    )
   }
   // publicPath: process.env.NODE_ENV === 'production' ? '/site/vue-demo/' : '/',  // 公共路径
   // indexPath: 'index.html' , // 相对于打包路径index.html的路径
@@ -87,7 +105,7 @@ module.exports = defineConfig({
   //         new CompressionWebpackPlugin({
   //           filename: "[path].gz[query]",
   //           algorithm: "gzip",
-  //           test: productionGzipExtensions,
+  //           category: productionGzipExtensions,
   //           threshold: 10240,
   //           minRatio: 0.8
   //         })

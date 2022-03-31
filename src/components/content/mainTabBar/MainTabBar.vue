@@ -6,12 +6,12 @@
       <template #item-text><div>首页</div></template>
 
     </tab-bar-item>
-    <tab-bar-item path="/test" activeColor="red">
+    <tab-bar-item path="/category" activeColor="red">
       <template #item-icon><img src="@/assets/images/tabbar/category.svg" alt=""></template>
       <template #item-icon-active><img src="@/assets/images/tabbar/category_active.svg" alt=""></template>
       <template #item-text><div>分类</div></template>
     </tab-bar-item>
-    <tab-bar-item path="/about" activeColor="red">
+    <tab-bar-item path="/shopping" activeColor="red">
       <template #item-icon><img src="@/assets/images/tabbar/shopcart.svg" alt=""></template>
       <template #item-icon-active><img src="@/assets/images/tabbar/shopcart_active.svg" alt=""></template>
       <template #item-text><div>购物车</div></template>

@@ -1,4 +1,5 @@
 import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
+import store from '@/store'
 // import HomeView from '../views/HomeView.vue'
 // import AboutView from "../views/AboutView";
 // import TestView from "@/views/TestView";
@@ -9,14 +10,14 @@ const Home = () => import('@/views/home/HomeView')
 const HomeNews =() => import('@/views/home/childComps/HomeNews')
 const HomeMessages =() => import('@/views/home/childComps/HomeMessages')
 
-const About = () => import('@/views/about/AboutView')
-const Test = () => import('@/views/test/TestView')
+const Shop = () => import('@/views/shopping/ShopView')
+const Category = () => import('@/views/category/CategoryView')
 const User = () => import('@/views/user/UserView')
-
+const Detail = () =>import('@/views/detail/DetailView')
 const routes = [
   {
     path:'',
-    redirect:'/home'
+    redirect:'/home',
   },
   {
     path: '/home',
@@ -41,22 +42,30 @@ const routes = [
     ]
   },
   {
-    path: '/about',
-    name: 'about',
-    tittle:'关于',
-    component: About
+    path: '/shopping',
+    name: 'shop',
+    tittle:'购物',
+    component: Shop,
+
   },
   {
-    path:'/test',
-    name:'test',
-    tittle:'测试',
-    component: Test
+    path:'/category',
+    name:'category',
+    tittle:'分类',
+    component: Category,
+
   },
   {
-    path: '/user/:userId',
+    path: '/user',
     name:'user',
     tittle:'用户',
-    component: User
+    component: User,
+  },
+  {
+    path: '/detail/:iid',
+    name:'detail',
+    tittle:'详情',
+    component:Detail
   }
 ]
 
@@ -68,10 +77,12 @@ const router = createRouter({
 
 router.beforeEach((to,from,next) =>{
   document.title = to.name
+  to.meta.keepAlive = true
+  store.commit("showLoading",true)
   next();
 })
 
-router.afterEach((to, from) => {
+router.afterEach((to,from,next) =>{
+  store.commit("showLoading",false)
 })
-
 export default router

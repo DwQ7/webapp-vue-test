@@ -20,7 +20,13 @@ const state =  {
         age: 40,
         height: 1.98
     },
-    currentIndex:0
+    currentIndex:0,
+    loadingOptions:{
+        lock: true,
+        text: 'Loading...',//加载动画的文字
+        // spinner: 'el-icon-loading',//加载动画的图标
+        // background: 'rgba(0, 0, 0, 0)',//加载动画的背景
+    }
 }
 const store = createStore({
     state,
@@ -31,6 +37,5 @@ const store = createStore({
         A:modulesA
     }
 })
-Vue.config.devtools = true
 
 export default store
