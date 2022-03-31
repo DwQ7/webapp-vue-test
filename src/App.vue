@@ -1,16 +1,10 @@
 <template>
-  <router-view/>
-<!--  <div style="height: 5rem;"></div>-->
-
+  <router-view v-slot="{Component}">
+    <keep-alive>
+      <component :is="Component" :key="$route.name"  v-if="$route.meta.keepAlive" />
+    </keep-alive>
+  </router-view>
   <main-tab-bar/>
-<!--    <router-link to="/childComps" >Home</router-link> |-->
-<!--    <router-link to="/test">About</router-link> |-->
-<!--    <router-link to="/about">Test</router-link> |-->
-<!--    <router-link :to="{path:'/user/'+userId,query:{name:userId,age:'19',height:188,weight:'70kg'}}">User</router-link>-->
-<!--    <router-view/>-->
-<!--    <compute/>-->
-<!--  <h2>{{this.$store.state.username}}</h2>-->
-<!--  <h2>{{this.$store.state.counter}}</h2>-->
 </template>
 
 <script>

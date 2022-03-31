@@ -15,22 +15,25 @@ export default {
 <style>
 .nav-bar{
   display: grid;
-  grid-template-columns: 60px 1fr 60px;
+  grid-template-columns: 20% 1fr 20%;
   line-height: 44px;
   height: 5vh;
   position: fixed;
   top:0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 99;
 }
 .left,.right{
-  /*background-color: ;*/
+  font-size: 14px;
+  text-align: center;
+  padding-top: 10px;
 }
 .center{
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  box-shadow: 0 1px 1px rgba(100,100,100,.2);
+  align-content: center;
+  /*box-shadow: 0 1px 1px rgba(100,100,100,.2);*/
 }
 </style>

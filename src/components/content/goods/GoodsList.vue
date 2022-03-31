@@ -1,8 +1,13 @@
 <template>
-  <div>
+  <div v-infinite-scroll="getMoreGoodList"
+       infinite-scroll-delay="10"
+       infinite-scroll-distance="0"
+       infinite-scroll-immediate="false"
+       :infinite-scroll-disabled="isLoading">
     <goods-list-item v-for="item in updateGoodList" key="item" :good-item="item"></goods-list-item>
+    <div style="text-align: center;line-height: 6vh;color: var(--el-color-primary)">下拉查看更多...</div>
+    <div element-loading-text="" v-loading="isLoading" ></div>
   </div>
-  <div style="text-align: center;color: #666666;line-height: 6vh" >下拉查看更多</div>
 </template>
 
 <script>
@@ -16,12 +21,23 @@ export default {
       default(){
         return {}
       }
-    },
-    currentIndex:{
-      type:Number,
-      default() {
-        return 0;
+    }
+  },
+  methods:{
+      getMoreGoodList(){
+        this.isLoading = true
+        setTimeout(() =>{
+          this.$parent.getHomeGoodList(this.currentType)
+          this.isLoading = false
+        },1000)
       }
+  },
+  data(){
+    return{
+      currentType:'pop',
+      currentIndex:0,
+      isLoading:false,
+      isNoMore:false
     }
   },
   components:{
@@ -29,20 +45,22 @@ export default {
   },
   computed:{
     updateGoodList(){
-        // if(this.$store.getters.getCurrentIndex === 0){
-        //   return this.goods['pop'].list
-        // }else if(this.$store.getters.getCurrentIndex === 1){
-        //   return this.goods['new'].list
-        // }else{
-        //   return this.goods['sell'].list
-        // }
         switch (this.$store.getters.getCurrentIndex){
-          case 1:
+          case 0:{
+            this.currentIndex = 0
+            this.currentType = 'pop'
             return this.goods['pop'].list
-          case 2:
+          }
+          case 1:{
+            this.currentIndex = 1
+            this.currentType = 'new'
             return this.goods['new'].list
-          default:
+          }
+          default:{
+            this.currentIndex = 2
+            this.currentType = 'sell'
             return this.goods['sell'].list
+          }
         }
     }
   }
@@ -50,5 +68,10 @@ export default {
 </script>
 
 <style scoped>
-
+.infinite-list {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 </style>

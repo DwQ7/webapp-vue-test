@@ -1,17 +1,25 @@
 <template>
-  <nav-bar class="home_nav"><template #center>桃堡</template></nav-bar>
-  <home-rotation :banner = 'banner'></home-rotation>
-  <home-recommend :recommend = 'recommend'></home-recommend>
-  <home-feature/>
-  <tab-control class="tab_control" :choices="['流行','新款','精选']" ></tab-control>
-  <goods-list :goods="goods"></goods-list>
+  <div class="home">
+    <nav-bar class="home_nav"><template #center>桃堡</template></nav-bar>
+    <home-rotation :banner = 'banner'></home-rotation>
+    <home-recommend :recommend = 'recommend'></home-recommend>
+    <home-feature/>
+    <tab-control class="tab_control" :choices="['流行','新款','精选']" ></tab-control>
+    <goods-list :goods="goods" class="good_list"></goods-list>
+  </div>
+  <el-affix :offset="50" target=".good_list">
+    <el-backtop :bottom="100" :right="10"  circle>  <el-icon><caret-top /></el-icon></el-backtop>
+  </el-affix>
+  <el-affix :offset="50" target=".home">
+    <el-backtop :bottom="150" :right="10"  circle>  <el-icon><shopping-cart-full /></el-icon></el-backtop>
+  </el-affix>
 
 </template>
 
 <script>
 import NavBar from "@/components/common/navbar/NavBar";
 import MainTabBar from "@/components/content/mainTabBar/MainTabBar";
-
+import {Delete} from "@element-plus/icons-vue";
 import {getHomeMultiData,getHomeGoodList} from "@/network/home";
 
 import HomeContent from "@/views/home/childComps/HomeContent";
@@ -44,7 +52,9 @@ export default {
     HomeContent,
     HomeRotation,
     HomeRecommend,
-    HomeFeature
+    HomeFeature,
+    Delete
+
   },
   created(){
     this.getHomeMultiData()
@@ -56,7 +66,6 @@ export default {
   methods:{
     getHomeMultiData(){
       getHomeMultiData().then(res =>{
-        console.log(res)
         this.banner = res.data.banner.list
         this.dKeyword = res.data.dKeyword.list
         this.keywords = res.data.keywords.list
