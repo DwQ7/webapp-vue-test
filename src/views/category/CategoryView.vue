@@ -1,79 +1,107 @@
 <template>
-  <div class="demo-progress">
-    <el-progress :percentage="50" :indeterminate="true" />
-    <el-progress :percentage="100" :format="format" :indeterminate="true" />
-    <el-progress
-        :percentage="100"
-        status="success"
-        :indeterminate="true"
-        :duration="5"
-    />
-    <el-progress
-        :percentage="100"
-        status="warning"
-        :indeterminate="true"
-        :duration="1"
-    />
-    <el-progress :percentage="50" status="exception" :indeterminate="true" />
-    <el-progress :percentage="percentage" :color="customColors" />
+  <nav-bar class="category_nav"><template #center>分类</template></nav-bar>
+  <div id="category">
+    <div class="content">
+      <div id="table-content">
+        <category-tab-menu :category="categoryData" @selectItem="selectItem"></category-tab-menu>
+      </div>
+      <el-scrollbar>
+        <category-tab-content :subcategories="showSubcategory"></category-tab-content>
+      </el-scrollbar>
+    </div>
   </div>
-  <div>
-    <el-button-group>
-      <el-button @click="decrease"><el-icon><minus /></el-icon></el-button>
-      <el-button @click="increase"><el-icon><plus/></el-icon></el-button>
-    </el-button-group>
-  </div>
-  <div element-loading-text="加载中" v-loading="true" style="color: var(--body-color)"></div>
+  <main-tab-bar/>
 </template>
 
 <script>
 
 
 import {Minus, Plus} from "@element-plus/icons-vue";
+import NavBar from "@/components/common/navbar/NavBar";
+import MainTabBar from "@/components/content/mainTabBar/MainTabBar";
+import CategoryTabMenu from "@/views/category/childComps/CategoryTabMenu";
+import {getCategory, getSubcategory} from "@/network/category";
+import CategoryTabContent from "@/views/category/childComps/CategoryTabContent";
 export default {
-  name: "TestView",
+  name: "CategoryView",
   data(){
     return{
-      format:(percentage) => (percentage === 100 ? 'Full' : `${percentage}%`),
-      customColors: [
-        { color: '#f56c6c', percentage: 20 },
-        { color: '#e6a23c', percentage: 40 },
-        { color: '#5cb87a', percentage: 60 },
-        { color: '#1989fa', percentage: 80 },
-        { color: '#6f7ad3', percentage: 100 },
-      ],
-      percentage:10,
-      loading:true
+      categoryData:{},
+      currentIndex: -1,
+      categoryInfo:[]
     }
   },
-  methods:{
-    increase(){
-      this.percentage += 10
-      if (this.percentage > 100) {
-        this.percentage = 100
-      }
+  computed:{
+    showSubcategory() {
+      if (this.currentIndex === -1) return {}
+      return this.categoryInfo[this.currentIndex].subcategories
     },
-    decrease(){
-      this.percentage -= 10
-      if (this.percentage < 0) {
-        this.percentage = 0
-      }
+  },
+
+  methods:{
+    _getSubcategories(index) {
+      this.currentIndex = index;
+      const mailKey = this.categoryData[index].maitKey;
+      getSubcategory(mailKey).then(res => {
+        this.categoryInfo[index].subcategories = res.data
+        this.categoryInfo = {...this.categoryInfo}
+        // this._getCategoryDetail(POP)
+        // this._getCategoryDetail(SELL)
+        // this._getCategoryDetail(NEW)
+      })
+    },
+    _getCateGory(){
+      getCategory().then(res =>{
+        this.categoryData = res.data.category.list
+        for (let i = 0; i < this.categoryData.length; i++) {
+          this.categoryInfo[i] = {
+            subcategories: {},
+            // categoryDetail: {
+            //   'pop': [],
+            //   'new': [],
+            //   'sell': []
+            // }
+          }
+        }
+        this._getSubcategories(0)
+      })
+    },
+
+    selectItem(index) {
+      this._getSubcategories(index)
     }
+
   },
   components:{
-    Plus,Minus
+    NavBar,
+    MainTabBar,
+    CategoryTabMenu,
+    CategoryTabContent
+  },
+  created() {
+    this._getCateGory()
   }
 }
 </script>
 
 <style scoped>
-.demo-progress{
-  width: 100%;
-
+#category{
+  width: 100vh;
 }
-.demo-progress .el-progress--line {
-  padding: 20px;
-  margin-bottom: 15px;
-  width: 350px;
+.category_nav{
+  background-color: #FF7A9C;
+}
+.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 44px;
+  bottom: 49px;
+  display: flex;
+}
+
+#tab-content {
+  height: 100%;
+  flex: 1;
 }
 </style>

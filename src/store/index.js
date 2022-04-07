@@ -9,12 +9,6 @@ import modulesA from "@/store/modules/modulesA";
 const state =  {
     counter: 100,
     username:'admin',
-    students: [
-        {id: 110, name: 'why', age: 18},
-        {id: 111, name: 'kobe', age: 24},
-        {id: 112, name: 'james', age: 30},
-        {id: 113, name: 'curry', age: 10}
-    ],
     info: {
         name: 'kobe',
         age: 40,

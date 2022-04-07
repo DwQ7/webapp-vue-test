@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3 v-for="item in recommendPics" :key="item">
-      <img :src="item">
+    <h3 v-for="item in recommend" :key="item">
+      <a :href="item.link"><img :src="item.image"></a>
     </h3>
   </div>
 </template>
@@ -12,16 +12,19 @@ export default {
   props:{
     recommend:Array
   },
-  computed:{
-    recommendPics:function () {
-      return this.recommend.map(obj=>{return obj.image})
-    }
-  }
+  // computed:{
+  //   recommendPics:function () {
+  //     return this.recommend.map(obj=>{return obj.image})
+  //   }
+  // }
 }
 </script>
 
 <style scoped>
 div{
+  margin: 5px;
+  border-radius: 1rem;
+  background-color: var(--el-color-white);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 130px;

@@ -4,7 +4,6 @@
       <template #item-icon><img src="@/assets/images/tabbar/home.svg" alt=""></template>
       <template #item-icon-active><img src="@/assets/images/tabbar/home_active.svg" alt=""></template>
       <template #item-text><div>首页</div></template>
-
     </tab-bar-item>
     <tab-bar-item path="/category" activeColor="red">
       <template #item-icon><img src="@/assets/images/tabbar/category.svg" alt=""></template>

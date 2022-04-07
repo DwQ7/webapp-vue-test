@@ -25,7 +25,7 @@ export default {
   },
   methods:{
       getMoreGoodList(){
-        this.isLoading = true
+        this.isLoading = true//控制加载，防止多次加载数据
         setTimeout(() =>{
           this.$parent.getHomeGoodList(this.currentType)
           this.isLoading = false

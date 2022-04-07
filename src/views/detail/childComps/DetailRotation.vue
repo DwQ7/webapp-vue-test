@@ -1,5 +1,5 @@
 <template>
-  <el-carousel :interval="2000" height="450px" >
+  <el-carousel :interval="2000" height="400px" >
     <el-carousel-item v-for="item in rotatePics" :key="item">
       <img :src="item">
     </el-carousel-item>

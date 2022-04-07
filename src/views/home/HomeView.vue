@@ -13,7 +13,7 @@
   <el-affix :offset="50" target=".home">
     <el-backtop :bottom="150" :right="10"  circle>  <el-icon><shopping-cart-full /></el-icon></el-backtop>
   </el-affix>
-
+  <main-tab-bar/>
 </template>
 
 <script>
@@ -53,7 +53,7 @@ export default {
     HomeRotation,
     HomeRecommend,
     HomeFeature,
-    Delete
+    Delete,
 
   },
   created(){

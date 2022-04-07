@@ -19,10 +19,11 @@ export default {
 
 <style scoped>
 div{
-  padding-top: 10px;
+  background-color: var(--el-color-white);
+  text-align: center;
 }
 img{
-  width: 100%;
-
+  border: none;
+  width: 95%;
 }
 </style>
