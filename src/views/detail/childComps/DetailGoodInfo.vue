@@ -61,19 +61,14 @@ export default {
   /*background-color: var(--el-color-primary);*/
 }
 .good_other{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
 }
 .good_other>p:nth-child(n){
   font-size: 0.9rem;
   margin:0;
-  font-weight: lighter;
-  justify-self: center;
-  align-self: center;
 }
 .good_other>p:last-child{
-  position: absolute;
-  right: 0;
 }
 /*.good_addition{*/
 /*  font-size: 1rem;*/
